@@ -26,7 +26,6 @@ bot.on('message', async (msg) => {
     const text = msg.text;
     //const resp = match[1]; // the captured "whatever"
     if (text === "/start") {
-
         await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
             reply_markup: {
                 inline_keyboard: [
@@ -41,7 +40,6 @@ bot.on('message', async (msg) => {
                 ]
             }
         });
-
         await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
             reply_markup: {
                 keyboard: [
@@ -56,7 +54,22 @@ bot.on('message', async (msg) => {
                 ]
             }
         });
+    }
 
+    if (msg?.web_app_data?.data) {
+        //Обработка данных формы
+        try {
+            const data = JSON.parse(msg?.web_app_data?.data);
+            await bot.sendMessage(chatId,'Спасибо за обратную связь');
+            await bot.sendMessage(chatId, 'Ваша страна: ' + data.country);
+            await bot.sendMessage(chatId, 'Ваша улица: ' + data.street);
+
+            setTimeout(async() => {
+                await bot.sendMessage(chatId,'Всю информацию вы получите в этом чате');
+            }, 3000);
+        } catch(e) {
+
+        }
     }
 
 });
