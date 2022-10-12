@@ -36,13 +36,12 @@ function Form() {
             country, street, subject
         }
         tg.sendData(JSON.stringify(data));
-
     }, [country, street, subject, tg]);
 
     useEffect(() => {
-        tg.WebApp.onEvent('mainButtonClicked', onSendData());
+        tg.WebApp.onEvent('mainButtonClicked', onSendData);
         return () => {
-            tg.WebApp.offEvent('mainButtonClicked', onSendData());
+            tg.WebApp.offEvent('mainButtonClicked', onSendData);
         }
     }, [tg, onSendData]);
 
