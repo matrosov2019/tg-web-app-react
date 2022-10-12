@@ -24,7 +24,7 @@ const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg} = useTelegram();
     const getTotalPrice = (items) => {
-        return items.reduct((prev, item) => prev + item.price, 0);
+        return items.reduce((prev, item) => prev + item.price, 0);
     };
     //Добавление в корзину
     const onAdd = (product) => {
@@ -41,8 +41,8 @@ const ProductList = () => {
             tg.MainButton.hide();
         } else {
             tg.MainButton.show();
-            tg.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`
+            tg.MainButton.setParams({
+                text: `Купить ${getTotalPrice(newItems)} р`
             });
         }
     };
