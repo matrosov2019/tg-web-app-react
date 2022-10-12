@@ -13,6 +13,11 @@
     margin: 0 auto;
     background: var(--tg-theme-button-color);
 }
+.img__element {
+    width: 150px;
+    display: flex;
+    margin: auto;
+}
 
 .description {
     font-size: 0.8em;
