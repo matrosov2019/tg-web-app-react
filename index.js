@@ -34,6 +34,21 @@ bot.on('message', async (msg) => {
                         {
                             text: 'Заполните форму',
                             web_app: {
+                                url: webAppUrl + '/form'
+                            }
+                        }
+                    ]
+                ]
+            }
+        });
+
+        await bot.sendMessage(chatId, 'Заходи в наш интернет магазин по кнопке ниже', {
+            reply_markup: {
+                keyboard: [
+                    [
+                        {
+                            text: 'Сделать заказ',
+                            web_app: {
                                 url: webAppUrl
                             }
                         }
