@@ -28,10 +28,10 @@ bot.on('message', async (msg) => {
     if (text === "/start") {
         await bot.sendMessage(chatId, 'Ниже появится кнопка, заполни форму', {
             reply_markup: {
-                inline_keyboard: [
+                keyboard: [
                     [
                         {
-                            text: 'Заполните форму',
+                            text: 'Заполнить форму',
                             web_app: {
                                 url: webAppUrl + '/form'
                             }
@@ -58,6 +58,7 @@ bot.on('message', async (msg) => {
          */
     }
 
+    console.log('msg: ', msg);
     if (msg?.web_app_data?.data) {
         //Обработка данных формы
         try {
