@@ -3,11 +3,11 @@
     flex-direction: column;
     border: 1px solid var(--tg-theme-button-color);
     padding: 15px;
-    width: 150px;
+    width: 170px;
 }
 
 .img {
-    width: 100%;
+    max-width: 150px;
     background: lightgray;
     height: 100px;
     margin: 0 auto;
