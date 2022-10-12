@@ -1,10 +1,9 @@
 .product {
     display: flex;
-    flex: 1;
     flex-direction: column;
     border: 1px solid var(--tg-theme-button-color);
     padding: 15px;
-    /*width: 170px;*/
+    width: 150px;
 }
 
 .img {

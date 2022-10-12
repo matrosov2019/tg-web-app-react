@@ -4,26 +4,19 @@ import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 
-const products = [
-    {id: '1', title: 'Джинсы Levis', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '2', title: 'Кроссовки Nike', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '3', title: 'Пальто H&M', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '4', title: 'Ботинки', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '5', title: 'Сандали', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '6', title: 'Легинсы', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '7', title: 'Лосины', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '8', title: 'Лонгслив', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '9', title: 'Рубашка', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '10', title: 'Джемпер', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '11', title: 'Кофта', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '12', title: 'Кардиган', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '13', title: 'Свитер', price: 3000, description: 'Синего цвета, прямые'},
-    {id: '14', title: 'Свитшот', price: 3000, description: 'Синего цвета, прямые'}
-];
-
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            let response = await fetch('https://fakestoreapi.com/products');
+            let json = await response.json();
+            setProducts(json);
+        };
+        loadData();
+    }, []);
 
     const onSendData = useCallback(() => {
         const data = {
