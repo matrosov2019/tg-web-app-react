@@ -8,6 +8,24 @@ function Form() {
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('');
     const {tg} = useTelegram();
+
+    const onSendData = useCallback(() => {
+        const data = {
+            country, street, subject
+        };
+        tg.sendData(JSON.stringify(data));
+    }, [country, street, subject, tg]);
+
+    useEffect(() => {
+        //tg.onEvent('mainButtonClicked', onSendData);
+        tg.MainButton.onClick(onSendData);
+        return () => {
+            //tg.offEvent('mainButtonClicked', onSendData);
+            tg.MainButton.offClick(onSendData);
+        }
+    }, [tg, onSendData]);
+
+
     useEffect(() => {
         tg.MainButton.setParams({
             text: 'Отправить данные'
@@ -31,19 +49,6 @@ function Form() {
     const onChangeSubject = (e) => {
         setSubject(e.target.value);
     }
-    const onSendData = useCallback(() => {
-        const data = {
-            country, street, subject
-        }
-        tg.sendData(JSON.stringify(data));
-    }, [country, street, subject, tg]);
-
-    useEffect(() => {
-        tg.onEvent('mainButtonClicked', onSendData);
-        return () => {
-            tg.offEvent('mainButtonClicked', onSendData);
-        }
-    }, [tg, onSendData]);
 
     return (
         <div className={"form"}>
